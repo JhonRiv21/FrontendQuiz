@@ -10,6 +10,9 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    OpenSans: require('../assets/fonts/OpenSans-Regular.ttf'),
+    OpenSansSemi: require('../assets/fonts/OpenSans-SemiBold.ttf'),
+    OpenSansBold: require('../assets/fonts/OpenSans-Bold.ttf')
   });
 
   if (!loaded) {
