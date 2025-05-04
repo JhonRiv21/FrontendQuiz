@@ -2,6 +2,7 @@ import ButtonOptions from "@/components/ButtonOptions";
 import { GlobalStyles } from "@/constants/GlobalStyles";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+import ViewTheme from "@/components/ViewTheme";
 
 const HTMLIcon = require('@/assets/images/html.svg');
 const CSSIcon = require('@/assets/images/css.svg');
@@ -13,7 +14,7 @@ export default function HomeScreen() {
     <SafeAreaProvider style={GlobalStyles.screen}>
       <SafeAreaView style={styles.container} edges={['top']}>
         <ScrollView>
-        <View>
+        <ViewTheme>
           <Text style={GlobalStyles.title}>Welcome to the</Text>
           <Text style={GlobalStyles.titleBold}>Frontend Quiz!</Text>
           <Text style={[{ paddingTop: 10, paddingBottom: 50 }, GlobalStyles.textItalic]}>Pick a subject to get started</Text>
@@ -23,7 +24,7 @@ export default function HomeScreen() {
             <ButtonOptions onPress={() => window.location.href = '/quiz/javascript'} image={JSIcon} label="Javascript" />
             <ButtonOptions onPress={() => window.location.href = '/quiz/accessibility'} image={ACCIcon} label="Accessibility" />
           </View>
-        </View>
+        </ViewTheme>
         </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -37,6 +38,6 @@ const styles = StyleSheet.create({
   containerButtons: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 15
+    gap: 20
   },
 });

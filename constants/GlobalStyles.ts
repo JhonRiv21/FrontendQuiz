@@ -4,11 +4,8 @@ import { Colors } from './Colors'
 export const GlobalStyles = StyleSheet.create({
   screen: {
     flex: 1,
-    paddingTop: 80,
-    paddingBottom: 20,
-    paddingLeft: 16,
-    paddingRight: 16,
     backgroundColor: Colors.light.background,
+    zIndex: 10
   },
   title: {
     fontSize: 36,

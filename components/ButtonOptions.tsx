@@ -40,7 +40,7 @@ export default function ButtonOptions({ label, image, onPress }: Props) {
 const styles = StyleSheet.create({
   containerButton: {
     width: '100%',
-    padding: 15,
+    padding: 12,
     backgroundColor: '#4F418B',
     borderRadius: 12,
     flexDirection: 'row',

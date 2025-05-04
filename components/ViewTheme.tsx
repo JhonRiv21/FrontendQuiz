@@ -1,36 +1,46 @@
-import ButtonOptions from "@/components/ButtonOptions";
 import { GlobalStyles } from "@/constants/GlobalStyles";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 
-const HTMLIcon = require('@/assets/images/html.svg');
-const CSSIcon = require('@/assets/images/css.svg');
-const JSIcon = require('@/assets/images/javascript.svg');
-const ACCIcon = require('@/assets/images/accessibility.svg');
+type Props = React.PropsWithChildren<object>
 
-export default function HomeScreen() {
+export default function ViewTheme({ children }: Props) {
   return (
-    <>
-      <View style={GlobalStyles.screen}>
-        <Text style={GlobalStyles.title}>Welcome to the</Text>
-        <Text style={GlobalStyles.titleBold}>Frontend Quiz!</Text>
-        <Text style={[{ paddingTop: 10, paddingBottom: 50 }, GlobalStyles.textItalic]}>
-          Pick a subject to get started
-        </Text>
-        <View style={styles.containerButtons}>
-          <ButtonOptions onPress={() => alert('aaaaaa')} image={HTMLIcon} label="HTML" />
-          <ButtonOptions onPress={() => alert('aaaaaa')} image={CSSIcon} label="CSS" />
-          <ButtonOptions onPress={() => alert('aaaaaa')} image={JSIcon} label="Javascript" />
-          <ButtonOptions onPress={() => alert('aaaaaa')} image={ACCIcon} label="Accessibility" />
-        </View>
+    <View style={[GlobalStyles.screen]}>
+      <View style={styles.box1}></View>
+      <View style={styles.box2}></View>
+      <View style={styles.paddings}>
+        {children}
       </View>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  containerButtons: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 15
+  box1: {
+    borderWidth: 45,
+    borderColor: '#00000',
+    opacity: 0.15,
+    borderRadius: '100%',
+    padding: 100,
+    position: 'absolute',
+    zIndex: 0,
+    top: -80,
+    left: -100
   },
+  box2: {
+    borderWidth: 45,
+    borderColor: '#00000',
+    opacity: 0.15,
+    borderRadius: '100%',
+    padding: 100,
+    position: 'absolute',
+    zIndex: 0,
+    top: 230,
+    right: -150
+  },
+  paddings: {
+    paddingTop: 40,
+    paddingLeft: 16,
+    paddingRight: 16,
+  }
 });

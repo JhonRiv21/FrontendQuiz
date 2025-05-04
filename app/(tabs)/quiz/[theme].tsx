@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { GlobalStyles } from '@/constants/GlobalStyles';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+import ViewTheme from "@/components/ViewTheme";
+import ProgressBar from '@/components/ProgressBar';
 
 export default function ThemeScreen() {
   const { theme } = useLocalSearchParams();
@@ -10,9 +12,19 @@ export default function ThemeScreen() {
     <SafeAreaProvider style={GlobalStyles.screen}>
       <SafeAreaView style={styles.container} edges={['top']}>
         <ScrollView>
-        <View>
+        <ViewTheme>
+          <Text style={[{ paddingBottom: 15 }, GlobalStyles.textItalic]}>
+            Question 6 of 10
+          </Text>
+          <Text style={GlobalStyles.textSemiBold}>
+            Wich of these color contrast ratios defines the minimun WCAG 2.1 Level AA requirement for normal text?
+          </Text>
+          <View style={{ paddingTop: 30, paddingBottom: 30 }}>
+            <ProgressBar percent={50} />
+          </View>
+
           <Text style={GlobalStyles.title}>Details of user {theme}</Text>
-        </View>
+        </ViewTheme>
         </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
