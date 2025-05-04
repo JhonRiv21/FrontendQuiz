@@ -1,0 +1,229 @@
+[
+  {
+    "quiz": {
+      "html": [
+        {
+          "question": "What does the <em> tag represent in HTML?",
+          "options": ["Strong emphasis", "Italic text", "Underline text", "Heading"],
+          "correctIndex": 1
+        },
+        {
+          "question": "Which attribute is used to provide alternative text for images?",
+          "options": ["src", "title", "alt", "href"],
+          "correctIndex": 2
+        },
+        {
+          "question": "Which tag is used to create a numbered list?",
+          "options": ["<ul>", "<ol>", "<li>", "<list>"],
+          "correctIndex": 1
+        },
+        {
+          "question": "Which HTML element is semantic?",
+          "options": ["<div>", "<span>", "<section>", "<b>"],
+          "correctIndex": 2
+        },
+        {
+          "question": "What is the correct DOCTYPE for HTML5?",
+          "options": ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<HTML5>", "<html doctype>"],
+          "correctIndex": 1
+        },
+        {
+          "question": "What tag is used for inserting a line break?",
+          "options": ["<br>", "<break>", "<lb>", "<line>"],
+          "correctIndex": 0
+        },
+        {
+          "question": "Which tag defines a table row?",
+          "options": ["<td>", "<tr>", "<th>", "<row>"],
+          "correctIndex": 1
+        },
+        {
+          "question": "Which tag is used to link an external CSS file?",
+          "options": ["<style>", "<css>", "<link>", "<script>"],
+          "correctIndex": 2
+        },
+        {
+          "question": "What does the <meta> tag typically define?",
+          "options": ["Links", "Metadata", "Scripts", "Images"],
+          "correctIndex": 1
+        },
+        {
+          "question": "Which attribute specifies the target of a link?",
+          "options": ["href", "src", "target", "rel"],
+          "correctIndex": 2
+        }
+      ],
+      "css": [
+        {
+          "question": "Which property sets the background color?",
+          "options": ["color", "bg-color", "background-color", "background"],
+          "correctIndex": 2
+        },
+        {
+          "question": "How do you make a font bold?",
+          "options": ["font-weight: bold;", "font: bold;", "text-style: bold;", "font-size: bold;"],
+          "correctIndex": 0
+        },
+        {
+          "question": "Which unit is relative to the parent element?",
+          "options": ["px", "em", "%", "rem"],
+          "correctIndex": 1
+        },
+        {
+          "question": "What selector targets elements with a specific class?",
+          "options": ["#", ".", ":", "::"],
+          "correctIndex": 1
+        },
+        {
+          "question": "Which property controls the size of text?",
+          "options": ["font-size", "text-size", "font-style", "text"],
+          "correctIndex": 0
+        },
+        {
+          "question": "What value of `position` removes the element from the normal flow?",
+          "options": ["relative", "absolute", "static", "inherit"],
+          "correctIndex": 1
+        },
+        {
+          "question": "Which pseudo-class targets the first child element?",
+          "options": [":first", "::first", ":first-child", "::first-child"],
+          "correctIndex": 2
+        },
+        {
+          "question": "How do you apply a style to all `<p>` elements inside a `<div>`?",
+          "options": ["div p", "div > p", "p div", ".div p"],
+          "correctIndex": 0
+        },
+        {
+          "question": "Which property is used for spacing inside an element?",
+          "options": ["margin", "padding", "border", "gap"],
+          "correctIndex": 1
+        },
+        {
+          "question": "What does `z-index` control?",
+          "options": ["Zoom", "Layer order", "Line height", "Grid columns"],
+          "correctIndex": 1
+        }
+      ],
+      "javascript": [
+        {
+          "question": "Which keyword declares a constant in JavaScript?",
+          "options": ["let", "var", "const", "define"],
+          "correctIndex": 2
+        },
+        {
+          "question": "What is the result of `typeof null`?",
+          "options": ["'null'", "'object'", "'undefined'", "'boolean'"],
+          "correctIndex": 1
+        },
+        {
+          "question": "Which of the following is *not* a primitive type?",
+          "options": ["String", "Object", "Number", "Boolean"],
+          "correctIndex": 1
+        },
+        {
+          "question": "What does `===` compare?",
+          "options": ["Type only", "Value only", "Value and type", "Reference only"],
+          "correctIndex": 2
+        },
+        {
+          "question": "Which array method creates a new array with filtered elements?",
+          "options": ["map()", "forEach()", "filter()", "reduce()"],
+          "correctIndex": 2
+        },
+        {
+          "question": "What is the correct syntax for an arrow function?",
+          "options": ["function => () {}", "() => {}", "() -> {}", "=> function()"],
+          "correctIndex": 1
+        },
+        {
+          "question": "What does `NaN` stand for?",
+          "options": ["No assigned number", "New and Null", "Not a Number", "Name as Null"],
+          "correctIndex": 2
+        },
+        {
+          "question": "How do you write a comment in JavaScript?",
+          "options": ["<!-- comment -->", "# comment", "// comment", "** comment **"],
+          "correctIndex": 2
+        },
+        {
+          "question": "Which method converts JSON to a JavaScript object?",
+          "options": ["JSON.parse()", "JSON.stringify()", "JSON.toObject()", "parse.JSON()"],
+          "correctIndex": 0
+        },
+        {
+          "question": "What is the value of `0 == '0'`?",
+          "options": ["true", "false", "error", "undefined"],
+          "correctIndex": 0
+        }
+      ],
+      "accessibility": [
+        {
+          "question": "What does the `aria-label` attribute do?",
+          "options": ["Adds a tooltip", "Defines visible text", "Provides an accessible label", "Changes the layout"],
+          "correctIndex": 2
+        },
+        {
+          "question": "Which HTML element is inherently focusable?",
+          "options": ["<span>", "<div>", "<a href='#'>", "<p>"],
+          "correctIndex": 2
+        },
+        {
+          "question": "Why should you use semantic HTML?",
+          "options": ["For better SEO", "For easier styling", "For accessibility and structure", "It loads faster"],
+          "correctIndex": 2
+        },
+        {
+          "question": "What does WCAG stand for?",
+          "options": [
+            "Web Content Accessibility Guidelines",
+            "Web Code and Graphics",
+            "World Consortium Accessibility Group",
+            "Web Clients and Applications Group"
+          ],
+          "correctIndex": 0
+        },
+        {
+          "question": "Which color contrast ratio is acceptable for normal text?",
+          "options": ["2:1", "3:1", "4.5:1", "6:1"],
+          "correctIndex": 2
+        },
+        {
+          "question": "What is a screen reader?",
+          "options": [
+            "A tool to test CSS",
+            "A browser plugin",
+            "A device that reads text aloud for users with vision impairments",
+            "An SEO analyzer"
+          ],
+          "correctIndex": 2
+        },
+        {
+          "question": "What HTML tag should be used for navigation links?",
+          "options": ["<menu>", "<div>", "<nav>", "<ul>"],
+          "correctIndex": 2
+        },
+        {
+          "question": "What role should you assign to a modal dialog?",
+          "options": ["dialog", "alert", "tooltip", "popup"],
+          "correctIndex": 0
+        },
+        {
+          "question": "Which attribute hides content from assistive technologies?",
+          "options": ["hidden", "aria-hidden='true'", "display: none", "opacity: 0"],
+          "correctIndex": 1
+        },
+        {
+          "question": "What is the purpose of `tabindex='0'`?",
+          "options": [
+            "Removes focus from an element",
+            "Prevents tab navigation",
+            "Includes an element in tab order",
+            "Sets the element as read-only"
+          ],
+          "correctIndex": 2
+        }
+      ]
+    }
+  }
+]

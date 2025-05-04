@@ -1,0 +1,36 @@
+import ButtonOptions from "@/components/ButtonOptions";
+import { GlobalStyles } from "@/constants/GlobalStyles";
+import { View, Text, StyleSheet } from "react-native";
+
+const HTMLIcon = require('@/assets/images/html.svg');
+const CSSIcon = require('@/assets/images/css.svg');
+const JSIcon = require('@/assets/images/javascript.svg');
+const ACCIcon = require('@/assets/images/accessibility.svg');
+
+export default function HomeScreen() {
+  return (
+    <>
+      <View style={GlobalStyles.screen}>
+        <Text style={GlobalStyles.title}>Welcome to the</Text>
+        <Text style={GlobalStyles.titleBold}>Frontend Quiz!</Text>
+        <Text style={[{ paddingTop: 10, paddingBottom: 50 }, GlobalStyles.textItalic]}>
+          Pick a subject to get started
+        </Text>
+        <View style={styles.containerButtons}>
+          <ButtonOptions onPress={() => alert('aaaaaa')} image={HTMLIcon} label="HTML" />
+          <ButtonOptions onPress={() => alert('aaaaaa')} image={CSSIcon} label="CSS" />
+          <ButtonOptions onPress={() => alert('aaaaaa')} image={JSIcon} label="Javascript" />
+          <ButtonOptions onPress={() => alert('aaaaaa')} image={ACCIcon} label="Accessibility" />
+        </View>
+      </View>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  containerButtons: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 15
+  },
+});
