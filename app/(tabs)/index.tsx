@@ -15,10 +15,10 @@ export default function HomeScreen() {
         <Text style={GlobalStyles.titleBold}>Frontend Quiz!</Text>
         <Text style={[{ paddingTop: 10, paddingBottom: 50 }, GlobalStyles.textItalic]}>Pick a subject to get started</Text>
         <View style={styles.containerButtons}>
-          <ButtonOptions onPress={() => alert('aaaaaa')} image={HTMLIcon} label="HTML" />
-          <ButtonOptions onPress={() => alert('bbbbbb')} image={CSSIcon} label="CSS" />
-          <ButtonOptions onPress={() => alert('cccccc')} image={JSIcon} label="Javascript" />
-          <ButtonOptions onPress={() => alert('dddddd')} image={ACCIcon} label="Accessibility" />
+          <ButtonOptions onPress={() => window.location.href = '/quiz/html'} image={HTMLIcon} label="HTML" />
+          <ButtonOptions onPress={() => window.location.href = '/quiz/css'} image={CSSIcon} label="CSS" />
+          <ButtonOptions onPress={() => window.location.href = '/quiz/javascript'} image={JSIcon} label="Javascript" />
+          <ButtonOptions onPress={() => window.location.href = '/quiz/accessibility'} image={ACCIcon} label="Accessibility" />
         </View>
       </View>
     </>
