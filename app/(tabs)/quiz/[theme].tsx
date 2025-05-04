@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { GlobalStyles } from '@/constants/GlobalStyles';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
@@ -22,6 +22,5 @@ export default function ThemeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
   },
 });
