@@ -7,9 +7,16 @@ import ProgressBar from '@/components/ProgressBar';
 import Questions from '@/constants/Questions.json'
 import { useEffect } from 'react';
 import Button from '@/components/Button';
+import ButtonOptions from '@/components/ButtonOptions';
+import Quiz from '@/components/Quiz';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;
+
+type Question = {
+  question: string;
+  answers: string[];
+};
 
 export default function ThemeScreen() {
   const { theme } = useLocalSearchParams();
@@ -30,20 +37,7 @@ export default function ThemeScreen() {
       <SafeAreaView style={styles.container} edges={['top']}>
         <ScrollView>
         <ViewTheme>
-          <Text style={[{ paddingBottom: 15 }, GlobalStyles.textItalic]}>
-            Question 6 of 10
-          </Text>
-          <Text style={GlobalStyles.textSemiBold}>
-            Wich of these color contrast ratios defines the minimun WCAG 2.1 Level AA requirement for normal text?
-          </Text>
-          <View style={{ paddingTop: 30, paddingBottom: 30 }}>
-            <ProgressBar percent={50} />
-          </View>
-
-          <Text style={GlobalStyles.title}>Details of user {theme}</Text>
-          <View style={{ marginTop: 40 }}>
-            <Button label='Submit answer' onPress={() => alert('aaaa')} />
-          </View>
+          <Quiz questions={dataTheme} />
         </ViewTheme>
         </ScrollView>
       </SafeAreaView>
@@ -55,4 +49,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  separationButtons: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 15
+  }
 });

@@ -1,19 +1,21 @@
-import { Pressable, Text, StyleSheet, ViewStyle } from "react-native";
-import { Image, type ImageSource } from 'expo-image';
+import { Colors } from "@/constants/Colors";
+import { Pressable, Text, StyleSheet, ViewStyle, View } from "react-native";
 import { useState } from 'react';
 
 type Props = {
   label: string
-  image: ImageSource
   onPress: () => void
+  letter?: string
+  key: number
 };
 
-export default function ButtonOptions({ label, image, onPress }: Props) {
+export default function ButtonQuestions({ label, onPress, letter, key }: Props) {
   const [isHovered, setHovered] = useState(false);
   const [isFocused, setFocused] = useState(false);
 
   return (
     <Pressable
+      key={key}
       onHoverIn={() => setHovered(true)}
       onHoverOut={() => setHovered(false)}
       onFocus={() => setFocused(true)}
@@ -30,7 +32,9 @@ export default function ButtonOptions({ label, image, onPress }: Props) {
         return [styles.containerButton, interactionStyle];
       }}
     >
-      <Image source={image} style={styles.imageStyles} />
+      <View style={styles.containerLetter}>
+        <Text style={styles.letter}>{letter}</Text>
+      </View>
       <Text style={styles.text}>{label}</Text>
     </Pressable>
   );
@@ -53,8 +57,16 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSansSemi',
     color: '#fff',
   },
-  imageStyles: {
-    width: 40,
-    height: 40,
+  containerLetter: {
+    backgroundColor: '#F5F5F5',
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingLeft: 14,
+    paddingRight: 14,
+    borderRadius: 10,
+  },
+  letter: {
+    color: '#362D60',
+    fontFamily: 'OpenSansSemi',
   },
 });

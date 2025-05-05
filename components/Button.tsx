@@ -21,7 +21,7 @@ export default function Button({ label, onPress }: Props) {
       style={({ pressed }) => {
         const interactionStyle: ViewStyle = {
           backgroundColor: pressed || isHovered || isFocused
-            ? '#3E3570'
+            ? '#6D36A3'
             : styles.containerButton.backgroundColor,
           transform: pressed ? [{ scale: 0.98 }] : [{ scale: 1 }],
         };
