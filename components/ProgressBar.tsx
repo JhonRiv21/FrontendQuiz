@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { View, StyleSheet } from "react-native";
 
 type Props = {
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     padding: 4,
-    backgroundColor: '#974ACA',
+    backgroundColor: Colors.light.purple || Colors.dark.purple,
     borderRadius: 30
   }
 })
