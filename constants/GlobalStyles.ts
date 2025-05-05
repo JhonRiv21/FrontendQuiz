@@ -5,7 +5,7 @@ export const GlobalStyles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: Colors.light.background,
-    zIndex: 10
+    zIndex: 10,
   },
   title: {
     fontSize: 36,

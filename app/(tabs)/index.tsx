@@ -3,6 +3,7 @@ import { GlobalStyles } from "@/constants/GlobalStyles";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import ViewTheme from "@/components/ViewTheme";
+import { useRouter } from "expo-router";
 
 const HTMLIcon = require('@/assets/images/html.svg');
 const CSSIcon = require('@/assets/images/css.svg');
@@ -10,6 +11,8 @@ const JSIcon = require('@/assets/images/javascript.svg');
 const ACCIcon = require('@/assets/images/accessibility.svg');
 
 export default function HomeScreen() {
+  const route = useRouter();
+
   return (
     <SafeAreaProvider style={GlobalStyles.screen}>
       <SafeAreaView style={styles.container} edges={['top']}>
@@ -19,10 +22,10 @@ export default function HomeScreen() {
           <Text style={GlobalStyles.titleBold}>Frontend Quiz!</Text>
           <Text style={[{ paddingTop: 10, paddingBottom: 50 }, GlobalStyles.textItalic]}>Pick a subject to get started</Text>
           <View style={styles.containerButtons}>
-            <ButtonOptions onPress={() => window.location.href = '/quiz/html'} image={HTMLIcon} label="HTML" />
-            <ButtonOptions onPress={() => window.location.href = '/quiz/css'} image={CSSIcon} label="CSS" />
-            <ButtonOptions onPress={() => window.location.href = '/quiz/javascript'} image={JSIcon} label="Javascript" />
-            <ButtonOptions onPress={() => window.location.href = '/quiz/accessibility'} image={ACCIcon} label="Accessibility" />
+            <ButtonOptions onPress={() => route.push('/quiz/html')} image={HTMLIcon} label="HTML" />
+            <ButtonOptions onPress={() => route.push('/quiz/css')} image={CSSIcon} label="CSS" />
+            <ButtonOptions onPress={() => route.push('/quiz/javascript')} image={JSIcon} label="Javascript" />
+            <ButtonOptions onPress={() => route.push('/quiz/accessibility')} image={ACCIcon} label="Accessibility" />
           </View>
         </ViewTheme>
         </ScrollView>
