@@ -2,8 +2,9 @@ import { GlobalStyles } from "@/constants/GlobalStyles";
 import { View, Text, StyleSheet } from "react-native";
 import Button from "./Button";
 import ProgressBar from "./ProgressBar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ButtonQuestions from "./ButtonQuestions";
+import { showSelectOptionAlert } from "@/constants/Alerts";
 
 type Question = {
   question: string
@@ -32,10 +33,10 @@ export default function Quiz ({ questions }: Props) {
 
   const handleNext = () => {
     if (selected === null) {
-      alert('You must select an option');
+      showSelectOptionAlert()
       return;
     } 
-    
+
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
@@ -59,7 +60,7 @@ export default function Quiz ({ questions }: Props) {
               key={index}
               letter={String.fromCharCode(65 + index)} 
               label={item}
-              onPress={() => { handleOptionSelect(index); console.log(index)}} 
+              onPress={() => handleOptionSelect(index)} 
             />
           ))
         }      
