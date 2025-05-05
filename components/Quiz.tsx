@@ -16,26 +16,41 @@ type Props = {
 };
 
 export default function Quiz ({ questions }: Props) {
-  const [ currentIndex, setCurrentIndex ] = useState<number>(0);
-  const [ optionSelected, setOptionSelected ] = useState<number | null>(null);
-  const currentQuestion = questions[currentIndex];
+  const [ currentQuestionIndex, setCurrentQuestionIndex ] = useState<number>(0);
+  const [ selectedOptions, setSelectedOptions ] = useState<(number | null)[]>(
+    Array(questions.length).fill(null)
+  );
 
-  const lastIndex = currentIndex === questions.length - 1;
+  const currentQuestion = questions[currentQuestionIndex];
+  const selected = selectedOptions[currentQuestionIndex]
+  
+  const handleOptionSelect = (optionIndex: number) => {
+    const updatedSelections = [...selectedOptions];
+    updatedSelections[currentQuestionIndex] = optionIndex;
+    setSelectedOptions(updatedSelections);
+  };
 
-  const nextStep = () => {
-    if (!lastIndex) setCurrentIndex(prev => prev + 1);
+  const handleNext = () => {
+    if (selected === null) {
+      alert('You must select an option');
+      return;
+    } 
+    
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    }
   }
 
   return (
     <>
       <Text style={[{ paddingBottom: 15 }, GlobalStyles.textItalic]}>
-        Question {currentIndex + 1} of {questions.length}
+        Question {currentQuestionIndex + 1} of {questions.length}
       </Text>
       <Text style={GlobalStyles.textSemiBold}>
         {currentQuestion.question}
       </Text>
       <View style={{ paddingTop: 30, paddingBottom: 30 }}>
-        <ProgressBar percent={Number(currentIndex * 10)} />
+        <ProgressBar percent={Number(currentQuestionIndex * 10)} />
       </View>
       <View style={styles.separationButtons}>
         {
@@ -43,14 +58,14 @@ export default function Quiz ({ questions }: Props) {
             <ButtonQuestions
               key={index}
               letter={String.fromCharCode(65 + index)} 
-              label={item} 
-              onPress={() => setOptionSelected(index)} 
+              label={item}
+              onPress={() => { handleOptionSelect(index); console.log(index)}} 
             />
           ))
         }      
       </View>
       <View style={{ marginTop: 30 }}>
-        <Button label='Submit answer' onPress={nextStep} />
+        <Button label='Submit answer' onPress={handleNext} />
       </View>
     </>
   )
