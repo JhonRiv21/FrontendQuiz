@@ -16,23 +16,20 @@ type Props = {
 };
 
 export default function Quiz ({ questions }: Props) {
-  const [ currentIndex, setCurrentIndex ]  = useState(1);
+  const [ currentIndex, setCurrentIndex ] = useState<number>(0);
+  const [ optionSelected, setOptionSelected ] = useState<number | null>(null);
   const currentQuestion = questions[currentIndex];
 
   const lastIndex = currentIndex === questions.length - 1;
 
   const nextStep = () => {
-    if (!lastIndex) setCurrentIndex((prev) => prev++);
+    if (!lastIndex) setCurrentIndex(prev => prev + 1);
   }
-
-  useEffect(() => {
-    console.log(currentQuestion.options)
-  })
 
   return (
     <>
       <Text style={[{ paddingBottom: 15 }, GlobalStyles.textItalic]}>
-        Question {currentIndex} of {questions.length}
+        Question {currentIndex + 1} of {questions.length}
       </Text>
       <Text style={GlobalStyles.textSemiBold}>
         {currentQuestion.question}
@@ -47,7 +44,7 @@ export default function Quiz ({ questions }: Props) {
               key={index}
               letter={String.fromCharCode(65 + index)} 
               label={item} 
-              onPress={() => alert('aaa')} 
+              onPress={() => setOptionSelected(index)} 
             />
           ))
         }      
