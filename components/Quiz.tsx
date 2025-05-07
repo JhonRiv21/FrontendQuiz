@@ -10,6 +10,7 @@ type Question = {
   question: string
   answers?: string[]
   options: string[]
+  correctIndex?: number
 };
 
 type Props = {
@@ -20,6 +21,7 @@ type Props = {
 export default function Quiz ({ questions, topicId }: Props) {
   const [questionIndexes, setQuestionIndexes] = useState<{ [topicId: string]: number }>({});
   const [selectedOptions, setSelectedOptions] = useState<{ [topicId: string]: (number | null)[] }>({});
+  const [hasAnswered, setHasAnswered] = useState<{ [topicId: string]: boolean[] }>({});
 
   useEffect(() => {
     setQuestionIndexes((prev) => {
@@ -34,12 +36,22 @@ export default function Quiz ({ questions, topicId }: Props) {
         [topicId]: Array(questions.length).fill(null),
       };
     });
+    
+    setHasAnswered((prev) => {
+      if (prev[topicId] !== undefined) return prev;
+      return {
+        ...prev,
+        [topicId]: Array(questions.length).fill(false),
+      };
+    });
+
   }, [topicId, questions.length]);
 
   const currentIndex = questionIndexes[topicId] ?? 0;
   const selections = selectedOptions[topicId] ?? [];
   const selected = selections[currentIndex];
   const currentQuestion = questions[currentIndex];
+  const answered = hasAnswered[topicId]?.[currentIndex] ?? false;
   
   const handleOptionSelect = (optionIndex: number) => {
     const updatedSelections = [...selections];
@@ -53,16 +65,27 @@ export default function Quiz ({ questions, topicId }: Props) {
 
   const handleNext = () => {
     if (selected === null) {
-      showSelectOptionAlert()
+      showSelectOptionAlert();
       return;
-    } 
+    };
+
+    if (!answered) {
+      const updated = [...(hasAnswered[topicId] ?? [])];
+      updated[currentIndex] = true;
+    
+      setHasAnswered(prev => ({
+        ...prev,
+        [topicId]: updated,
+      }));
+      return;
+    }
 
     if (currentIndex < questions.length - 1) {
       setQuestionIndexes(prev => ({
         ...prev,
         [topicId]: currentIndex + 1,
       }));
-    }
+    };
   }
 
   return (
@@ -85,12 +108,14 @@ export default function Quiz ({ questions, topicId }: Props) {
               label={item}
               onPress={() => handleOptionSelect(index)} 
               selected={selected === index}
+              isCorrect={answered && index === currentQuestion.correctIndex}
+              isWrong={answered && selected === index && index !== currentQuestion.correctIndex}
             />
           ))
         }      
       </View>
       <View style={{ marginTop: 30 }}>
-        <Button label='Submit answer' onPress={handleNext} />
+        <Button label={hasAnswered ? 'Next question' : 'Submit answer'} onPress={handleNext} />
       </View>
     </>
   )

@@ -1,5 +1,5 @@
-import { Pressable, Text, StyleSheet, ViewStyle, View } from "react-native";
 import { useState } from 'react';
+import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
 
 type Props = {
   label: string
@@ -7,11 +7,41 @@ type Props = {
   letter?: string
   key: number
   selected?: boolean
+  isCorrect?: boolean
+  isWrong?: boolean
 };
 
-export default function ButtonQuestions({ label, onPress, letter, key, selected }: Props) {
+export default function ButtonQuestions({ label, onPress, letter, key, selected, isCorrect, isWrong }: Props) {
   const [isHovered, setHovered] = useState(false);
   const [isFocused, setFocused] = useState(false);
+
+  const getButtonStyle = (pressed: boolean): ViewStyle[] => {
+    let backgroundColor = '#4F418B';
+    let borderColor = 'transparent';
+
+    if (isCorrect) {
+      backgroundColor = '#2E7D32';
+      borderColor = '#A5D6A7';
+    } else if (isWrong) {
+      backgroundColor = '#C62828';
+      borderColor = '#EF9A9A';
+    } else if (selected) {
+      backgroundColor = '#574ACA';
+      borderColor = '#D1C4FF';
+    } else if (pressed || isHovered || isFocused) {
+      backgroundColor = '#3E3570';
+    }
+
+    return [
+      styles.containerButton,
+      {
+        backgroundColor,
+        transform: pressed ? [{ scale: 0.98 }] : [{ scale: 1 }],
+        borderWidth: (selected || isCorrect || isWrong) ? 2 : 0,
+        borderColor,
+      },
+    ];
+  };
 
   return (
     <Pressable
@@ -21,20 +51,7 @@ export default function ButtonQuestions({ label, onPress, letter, key, selected 
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
       onPress={onPress}
-      style={({ pressed }) => {
-        const interactionStyle: ViewStyle = {
-          backgroundColor: selected
-            ? '#574ACA'
-            : pressed || isHovered || isFocused
-              ? '#3E3570'
-              : styles.containerButton.backgroundColor,
-          transform: pressed ? [{ scale: 0.98 }] : [{ scale: 1 }],
-          borderWidth: selected ? 2 : 0,
-          borderColor: selected ? '#D1C4FF' : 'transparent',
-        };
-
-        return [styles.containerButton, interactionStyle];
-      }}
+      style={({ pressed }) => getButtonStyle(pressed)}
     >
       <View style={styles.containerLetter}>
         <Text style={styles.letter}>{letter}</Text>
