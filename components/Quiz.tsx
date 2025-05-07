@@ -115,7 +115,7 @@ export default function Quiz ({ questions, topicId }: Props) {
         }      
       </View>
       <View style={{ marginTop: 30 }}>
-        <Button label={hasAnswered ? 'Next question' : 'Submit answer'} onPress={handleNext} />
+        <Button label={answered ? 'Next question' : 'Submit answer'} onPress={handleNext} />
       </View>
     </>
   )
