@@ -37,7 +37,7 @@ export default function ThemeScreen() {
       <SafeAreaView style={styles.container} edges={['top']}>
         <ScrollView>
         <ViewTheme>
-          <Quiz questions={dataTheme} />
+          <Quiz questions={dataTheme} topicId={theme as string} />
         </ViewTheme>
         </ScrollView>
       </SafeAreaView>

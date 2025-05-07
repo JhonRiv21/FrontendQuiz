@@ -1,4 +1,3 @@
-import { Colors } from "@/constants/Colors";
 import { Pressable, Text, StyleSheet, ViewStyle, View } from "react-native";
 import { useState } from 'react';
 
@@ -7,9 +6,10 @@ type Props = {
   onPress: () => void
   letter?: string
   key: number
+  selected?: boolean
 };
 
-export default function ButtonQuestions({ label, onPress, letter, key }: Props) {
+export default function ButtonQuestions({ label, onPress, letter, key, selected }: Props) {
   const [isHovered, setHovered] = useState(false);
   const [isFocused, setFocused] = useState(false);
 
@@ -23,10 +23,14 @@ export default function ButtonQuestions({ label, onPress, letter, key }: Props) 
       onPress={onPress}
       style={({ pressed }) => {
         const interactionStyle: ViewStyle = {
-          backgroundColor: pressed || isHovered || isFocused
-            ? '#3E3570'
-            : styles.containerButton.backgroundColor,
+          backgroundColor: selected
+            ? '#574ACA'
+            : pressed || isHovered || isFocused
+              ? '#3E3570'
+              : styles.containerButton.backgroundColor,
           transform: pressed ? [{ scale: 0.98 }] : [{ scale: 1 }],
+          borderWidth: selected ? 2 : 0,
+          borderColor: selected ? '#D1C4FF' : 'transparent',
         };
 
         return [styles.containerButton, interactionStyle];

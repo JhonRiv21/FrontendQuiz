@@ -2,7 +2,7 @@ import { GlobalStyles } from "@/constants/GlobalStyles";
 import { View, Text, StyleSheet } from "react-native";
 import Button from "./Button";
 import ProgressBar from "./ProgressBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonQuestions from "./ButtonQuestions";
 import { showSelectOptionAlert } from "@/constants/Alerts";
 
@@ -14,21 +14,41 @@ type Question = {
 
 type Props = {
   questions: Question[]
+  topicId: string
 };
 
-export default function Quiz ({ questions }: Props) {
-  const [ currentQuestionIndex, setCurrentQuestionIndex ] = useState<number>(0);
-  const [ selectedOptions, setSelectedOptions ] = useState<(number | null)[]>(
-    Array(questions.length).fill(null)
-  );
+export default function Quiz ({ questions, topicId }: Props) {
+  const [questionIndexes, setQuestionIndexes] = useState<{ [topicId: string]: number }>({});
+  const [selectedOptions, setSelectedOptions] = useState<{ [topicId: string]: (number | null)[] }>({});
 
-  const currentQuestion = questions[currentQuestionIndex];
-  const selected = selectedOptions[currentQuestionIndex]
+  useEffect(() => {
+    setQuestionIndexes((prev) => {
+      if (prev[topicId] !== undefined) return prev;
+      return { ...prev, [topicId]: 0 };
+    });
+
+    setSelectedOptions((prev) => {
+      if (prev[topicId] !== undefined) return prev;
+      return {
+        ...prev,
+        [topicId]: Array(questions.length).fill(null),
+      };
+    });
+  }, [topicId, questions.length]);
+
+  const currentIndex = questionIndexes[topicId] ?? 0;
+  const selections = selectedOptions[topicId] ?? [];
+  const selected = selections[currentIndex];
+  const currentQuestion = questions[currentIndex];
   
   const handleOptionSelect = (optionIndex: number) => {
-    const updatedSelections = [...selectedOptions];
-    updatedSelections[currentQuestionIndex] = optionIndex;
-    setSelectedOptions(updatedSelections);
+    const updatedSelections = [...selections];
+    updatedSelections[currentIndex] = optionIndex;
+    
+    setSelectedOptions(prev => ({
+      ...prev,
+      [topicId]: updatedSelections,
+    }));
   };
 
   const handleNext = () => {
@@ -37,21 +57,24 @@ export default function Quiz ({ questions }: Props) {
       return;
     } 
 
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
+    if (currentIndex < questions.length - 1) {
+      setQuestionIndexes(prev => ({
+        ...prev,
+        [topicId]: currentIndex + 1,
+      }));
     }
   }
 
   return (
     <>
       <Text style={[{ paddingBottom: 15 }, GlobalStyles.textItalic]}>
-        Question {currentQuestionIndex + 1} of {questions.length}
+        Question {currentIndex + 1} of {questions.length}
       </Text>
       <Text style={GlobalStyles.textSemiBold}>
         {currentQuestion.question}
       </Text>
       <View style={{ paddingTop: 30, paddingBottom: 30 }}>
-        <ProgressBar percent={Number(currentQuestionIndex * 10)} />
+        <ProgressBar percent={Number(currentIndex * 10)} />
       </View>
       <View style={styles.separationButtons}>
         {
@@ -61,6 +84,7 @@ export default function Quiz ({ questions }: Props) {
               letter={String.fromCharCode(65 + index)} 
               label={item}
               onPress={() => handleOptionSelect(index)} 
+              selected={selected === index}
             />
           ))
         }      
