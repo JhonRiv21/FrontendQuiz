@@ -8,7 +8,7 @@ import { showSelectOptionAlert } from "@/constants/Alerts";
 
 type Question = {
   question: string
-  answers: string[]
+  answers?: string[]
   options: string[]
 };
 
