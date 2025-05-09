@@ -4,7 +4,6 @@ import { GlobalStyles } from '@/constants/GlobalStyles';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import ViewTheme from "@/components/ViewTheme";
 import Questions from '@/constants/Questions.json'
-import { useEffect } from 'react';
 import Quiz from '@/components/Quiz';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
@@ -19,10 +18,6 @@ export default function ThemeScreen() {
   const dataTheme = isValidTheme(theme)
     ? Questions[0].quiz[theme]
     : [];
-
-  useEffect(() => {
-    console.log(dataTheme);
-  });
 
   return (
     <SafeAreaProvider style={GlobalStyles.screen}>

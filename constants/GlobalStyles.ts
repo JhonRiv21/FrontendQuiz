@@ -27,6 +27,11 @@ export const GlobalStyles = StyleSheet.create({
     fontFamily: 'OpenSansSemi',
     color: Colors.light.text || Colors.dark.text
   },
+  textMidSize: {
+    fontSize: 20,
+    fontFamily: 'OpenSansSemi',
+    color: Colors.light.text || Colors.dark.text
+  },
   textItalic: {
     fontSize: 18,
     fontFamily: 'OpenSansSemi',
