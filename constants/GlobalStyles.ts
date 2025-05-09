@@ -12,6 +12,11 @@ export const GlobalStyles = StyleSheet.create({
     fontFamily: 'OpenSans',
     color: '#F5F5F5'
   },
+  subtitle: {
+    fontSize: 28,
+    fontFamily: 'OpenSans',
+    color: '#F5F5F5'
+  },
   titleBold: {
     fontSize: 42,
     fontFamily: 'OpenSansBold',
@@ -19,6 +24,11 @@ export const GlobalStyles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+    fontFamily: 'OpenSans',
+    color: Colors.light.text || Colors.dark.text
+  },
+  textSemiLight: {
+    fontSize: 20,
     fontFamily: 'OpenSans',
     color: Colors.light.text || Colors.dark.text
   },

@@ -146,6 +146,7 @@ export default function Quiz ({ questions, topicId }: Props) {
               selected={selected === index}
               isCorrect={answered && index === currentQuestion.correctIndex}
               isWrong={answered && selected === index && index !== currentQuestion.correctIndex}
+              disabled={answered}
             />
           ))
         }      

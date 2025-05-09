@@ -8,9 +8,10 @@ type Props = {
   selected?: boolean
   isCorrect?: boolean
   isWrong?: boolean
+  disabled: boolean
 };
 
-export default function ButtonQuestions({ label, onPress, letter, selected, isCorrect, isWrong }: Props) {
+export default function ButtonQuestions({ label, onPress, letter, selected, isCorrect, isWrong, disabled }: Props) {
   const [isHovered, setHovered] = useState(false);
   const [isFocused, setFocused] = useState(false);
 
@@ -44,6 +45,7 @@ export default function ButtonQuestions({ label, onPress, letter, selected, isCo
 
   return (
     <Pressable
+      disabled={disabled}
       onHoverIn={() => setHovered(true)}
       onHoverOut={() => setHovered(false)}
       onFocus={() => setFocused(true)}
@@ -75,13 +77,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: 'OpenSansSemi',
     color: '#fff',
+    maxWidth: '85%'
   },
   containerLetter: {
     backgroundColor: '#F5F5F5',
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 14,
-    paddingRight: 14,
+    paddingBlock: 8,
+    paddingInline: 14,
     borderRadius: 10,
   },
   letter: {
