@@ -24,7 +24,7 @@ export function Collapsible({ children, title }: PropsWithChildren & { title: st
 
         <Text style={GlobalStyles.textMidSize}>{title}</Text>
       </TouchableOpacity>
-      {isOpen && <View style={styles.content}><Text style={GlobalStyles.text}>{children}</Text></View>}
+      {isOpen && <View style={styles.content}>{children}</View>}
     </View>
   );
 }

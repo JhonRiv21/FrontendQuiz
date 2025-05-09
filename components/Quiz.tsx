@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ButtonQuestions from "./ButtonQuestions";
 import { showSelectOptionAlert } from "@/constants/Alerts";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter } from "expo-router";
 
 type Question = {
   question: string
@@ -24,6 +25,7 @@ export default function Quiz ({ questions, topicId }: Props) {
   const [selectedOptions, setSelectedOptions] = useState<{ [topicId: string]: (number | null)[] }>({});
   const [hasAnswered, setHasAnswered] = useState<{ [topicId: string]: boolean[] }>({});
   const getStorageKey = (topicId: string) =>  `quiz-progress-${topicId}`
+  const route = useRouter();
 
   const currentIndex = questionIndexes[topicId] ?? 0;
   const selections = selectedOptions[topicId] ?? [];
@@ -118,6 +120,8 @@ export default function Quiz ({ questions, topicId }: Props) {
         ...prev,
         [topicId]: currentIndex + 1,
       }));
+    } else {
+      route.push(`/quiz/result/${topicId}`)
     };
   }
 
