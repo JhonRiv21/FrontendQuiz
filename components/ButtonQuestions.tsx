@@ -5,13 +5,12 @@ type Props = {
   label: string
   onPress: () => void
   letter?: string
-  key: number
   selected?: boolean
   isCorrect?: boolean
   isWrong?: boolean
 };
 
-export default function ButtonQuestions({ label, onPress, letter, key, selected, isCorrect, isWrong }: Props) {
+export default function ButtonQuestions({ label, onPress, letter, selected, isCorrect, isWrong }: Props) {
   const [isHovered, setHovered] = useState(false);
   const [isFocused, setFocused] = useState(false);
 
@@ -45,7 +44,6 @@ export default function ButtonQuestions({ label, onPress, letter, key, selected,
 
   return (
     <Pressable
-      key={key}
       onHoverIn={() => setHovered(true)}
       onHoverOut={() => setHovered(false)}
       onFocus={() => setFocused(true)}

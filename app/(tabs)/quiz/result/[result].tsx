@@ -32,7 +32,9 @@ export default function ResultScreen() {
               <Text style={GlobalStyles.text}>Score Summary:</Text>
               <Text style={GlobalStyles.textSemiBold}>You scored 9 out of 10!</Text>
               <View>
-                <Text style={GlobalStyles.text}>Excellent! You&apos;re an accessibility hero! 💪 Your knowledge is spot-on.</Text>
+                <Text style={GlobalStyles.text}>
+                  Excellent! You&apos;re an accessibility hero! 💪 Your knowledge is spot-on.
+                </Text>
               </View>
               <Text style={GlobalStyles.text}>List of Results:</Text>
             </View>
