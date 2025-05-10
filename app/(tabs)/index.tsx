@@ -17,7 +17,7 @@ export default function HomeScreen() {
 
   const redirect = (topic: string) => {
     const quiz = quizzes[topic];
-    const isCompleted = quiz.hasAnswered?.every(Boolean);
+    const isCompleted = quiz?.hasAnswered?.length > 0 && quiz.hasAnswered.every(Boolean);
 
     if (isCompleted) {
       route.push(`/quiz/result/${topic}`)
