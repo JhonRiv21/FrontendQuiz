@@ -14,10 +14,10 @@ export default function AboutScreen() {
         <ScrollView>
           <ViewTheme>
             <Animated.View style={[fadeInStyle, { gap: 20 }]}>
-              <Text style={[GlobalStyles.title, { fontSize: 28 }]}>About the Project</Text>
+              <Text style={[GlobalStyles.title, { fontSize: 28 }]}>About the app</Text>
 
               <Text style={GlobalStyles.text}>
-                This project is a cross-platform quiz application developed using React Native and Expo. It is designed to help users test their knowledge on various topics in a clean, mobile-first interface.
+                This is a cross-platform quiz application developed using React Native and Expo. It is designed to help users test their knowledge on various topics in a clean, mobile-first interface.
               </Text>
 
               <Text style={[GlobalStyles.textSemiBold, { marginTop: 10 }]}>

@@ -1,14 +1,15 @@
 import { Image, type ImageSource } from 'expo-image';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, ViewStyle } from "react-native";
+import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
 
 type Props = {
   label: string
   image: ImageSource
   onPress: () => void
+  percent?: number | null
 };
 
-export default function ButtonOptions({ label, image, onPress }: Props) {
+export default function ButtonOptions({ label, image, onPress, percent }: Props) {
   const [isHovered, setHovered] = useState(false);
   const [isFocused, setFocused] = useState(false);
 
@@ -31,7 +32,13 @@ export default function ButtonOptions({ label, image, onPress }: Props) {
       }}
     >
       <Image source={image} style={styles.imageStyles} />
-      <Text style={styles.text}>{label}</Text>
+      <View style={styles.labelContainer}>
+        <Text style={styles.text}>{label}</Text>
+        {percent && (
+          <Text style={styles.text}>{percent}%</Text>
+
+        )}
+      </View>
     </Pressable>
   );
 };
@@ -56,5 +63,11 @@ const styles = StyleSheet.create({
   imageStyles: {
     width: 40,
     height: 40,
+  },
+  labelContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
