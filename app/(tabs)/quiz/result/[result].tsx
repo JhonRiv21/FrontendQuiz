@@ -10,6 +10,8 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { useFadeInAnimation } from '@/hooks/useFadeInAnimation';
+import Animated from 'react-native-reanimated';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;
@@ -24,6 +26,7 @@ export default function ResultScreen() {
   const { result } = useLocalSearchParams();
   const { quizzes, loadQuiz, resetQuiz } = useQuizStore();
   const router = useRouter();
+  const fadeInStyle = useFadeInAnimation();
 
   const theme = typeof result === 'string' && VALID_THEMES.includes(result as QuizKeys)
   ? result as QuizKeys
@@ -77,7 +80,7 @@ export default function ResultScreen() {
       <SafeAreaView style={styles.container} edges={['top']}>
         <ScrollView>
         <ViewTheme>
-          <View style={{ gap: 20 }}>    
+          <Animated.View style={[{ gap: 20 }, fadeInStyle]}>    
             <Text style={[{ textTransform: 'capitalize' }, GlobalStyles.subtitle]}>
               Your Frontend {theme} Quiz Results:
             </Text>
@@ -139,7 +142,7 @@ export default function ResultScreen() {
                 
               </View>
             </View>
-          </View>
+          </Animated.View>
         </ViewTheme>
         </ScrollView>
       </SafeAreaView>

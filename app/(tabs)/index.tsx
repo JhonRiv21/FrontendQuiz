@@ -5,6 +5,8 @@ import { useQuizStore } from "@/store/useQuizStore";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import Animated, { FadeInRight, FadeOutLeft } from "react-native-reanimated";
+import { useFadeInAnimation } from "@/hooks/useFadeInAnimation";
 
 const HTMLIcon = require('@/assets/images/html.svg');
 const CSSIcon = require('@/assets/images/css.svg');
@@ -14,6 +16,8 @@ const ACCIcon = require('@/assets/images/accessibility.svg');
 export default function HomeScreen() {
   const route = useRouter();
   const { quizzes } = useQuizStore();
+  const fadeInStyle = useFadeInAnimation();
+
 
   const redirect = (topic: string) => {
     const quiz = quizzes[topic];
@@ -31,15 +35,17 @@ export default function HomeScreen() {
       <SafeAreaView style={styles.container} edges={['top']}>
         <ScrollView>
         <ViewTheme>
-          <Text style={GlobalStyles.title}>Welcome to the</Text>
-          <Text style={GlobalStyles.titleBold}>Frontend Quiz!</Text>
-          <Text style={[{ paddingTop: 10, paddingBottom: 50 }, GlobalStyles.textItalic]}>Pick a subject to get started</Text>
-          <View style={styles.containerButtons}>
-            <ButtonOptions onPress={() => redirect('html')} image={HTMLIcon} label="HTML" />
-            <ButtonOptions onPress={() => redirect('css')} image={CSSIcon} label="CSS" />
-            <ButtonOptions onPress={() => redirect('javascript')} image={JSIcon} label="Javascript" />
-            <ButtonOptions onPress={() => redirect('accessibility')} image={ACCIcon} label="Accessibility" />
-          </View>
+          <Animated.View style={fadeInStyle}>
+            <Text style={GlobalStyles.title}>Welcome to the</Text>
+            <Text style={GlobalStyles.titleBold}>Frontend Quiz!</Text>
+            <Text style={[{ paddingTop: 10, paddingBottom: 50 }, GlobalStyles.textItalic]}>Pick a subject to get started</Text>
+            <View style={styles.containerButtons}>
+              <ButtonOptions onPress={() => redirect('html')} image={HTMLIcon} label="HTML" />
+              <ButtonOptions onPress={() => redirect('css')} image={CSSIcon} label="CSS" />
+              <ButtonOptions onPress={() => redirect('javascript')} image={JSIcon} label="Javascript" />
+              <ButtonOptions onPress={() => redirect('accessibility')} image={ACCIcon} label="Accessibility" />
+            </View>
+          </Animated.View>
         </ViewTheme>
         </ScrollView>
       </SafeAreaView>

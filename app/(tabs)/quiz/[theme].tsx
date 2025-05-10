@@ -5,12 +5,15 @@ import Questions from '@/constants/Questions.json';
 import { useLocalSearchParams } from 'expo-router';
 import { ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { useFadeInAnimation } from '@/hooks/useFadeInAnimation';
+import Animated from 'react-native-reanimated';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;
 
 export default function ThemeScreen() {
   const { theme } = useLocalSearchParams();
+  const fadeInStyle = useFadeInAnimation();
 
   const isValidTheme = (value: any): value is QuizKeys =>
     typeof value === 'string' && VALID_THEMES.includes(value as QuizKeys);
@@ -24,7 +27,9 @@ export default function ThemeScreen() {
       <SafeAreaView style={styles.container} edges={['top']}>
         <ScrollView>
         <ViewTheme>
-          <Quiz questions={dataTheme} topicId={theme as string} />
+          <Animated.View style={fadeInStyle}>
+            <Quiz questions={dataTheme} topicId={theme as string} />
+          </Animated.View>
         </ViewTheme>
         </ScrollView>
       </SafeAreaView>

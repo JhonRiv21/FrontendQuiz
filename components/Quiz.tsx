@@ -7,6 +7,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Button from "./Button";
 import ButtonQuestions from "./ButtonQuestions";
 import ProgressBar from "./ProgressBar";
+import Animated, { FadeInRight, FadeOutLeft } from 'react-native-reanimated';
 
 type Question = {
   question: string
@@ -68,7 +69,11 @@ export default function Quiz ({ questions, topicId }: Props) {
   }
 
   return (
-    <>
+    <Animated.View
+      key={currentIndex}
+      entering={FadeInRight.duration(400)}
+      exiting={FadeOutLeft.duration(400)}
+    >
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
         <Text style={[{ paddingBottom: 15 }, GlobalStyles.textItalic]}>
           Question {currentIndex + 1} of {questions.length}
@@ -100,7 +105,7 @@ export default function Quiz ({ questions, topicId }: Props) {
       <View style={{ marginTop: 30 }}>
         <Button label={answered ? 'Next question' : 'Submit answer'} onPress={handleNext} />
       </View>
-    </>
+    </Animated.View>
   )
 }
 

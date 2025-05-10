@@ -1,15 +1,19 @@
 import ViewTheme from '@/components/ViewTheme';
 import { GlobalStyles } from '@/constants/GlobalStyles';
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import Animated from 'react-native-reanimated';
+import { useFadeInAnimation } from '@/hooks/useFadeInAnimation';
 
-export default function TabTwoScreen() {
+export default function AboutScreen() {
+  const fadeInStyle = useFadeInAnimation();
+
   return (
     <SafeAreaProvider style={GlobalStyles.screen}>
       <SafeAreaView style={styles.container} edges={['top']}>
         <ScrollView>
           <ViewTheme>
-            <View style={{ gap: 20 }}>
+            <Animated.View style={[fadeInStyle, { gap: 20 }]}>
               <Text style={[GlobalStyles.title, { fontSize: 28 }]}>About the Project</Text>
 
               <Text style={GlobalStyles.text}>
@@ -50,7 +54,7 @@ export default function TabTwoScreen() {
               <Text style={[GlobalStyles.textItalic, { marginTop: 30, marginBottom: 20 }]}>
                 Designed and developed with care.
               </Text>
-            </View>
+            </Animated.View>
           </ViewTheme>
         </ScrollView>
       </SafeAreaView>
