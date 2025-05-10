@@ -1,6 +1,6 @@
-import { useSharedValue, useAnimatedStyle, withTiming, withDelay, Easing } from 'react-native-reanimated';
-import { useEffect } from 'react';
 import { useIsFocused } from '@react-navigation/native';
+import { useEffect } from 'react';
+import { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 
 export function useFadeInAnimation(delay = 200, duration = 400, offsetY = 20) {
   const isFocused = useIsFocused();

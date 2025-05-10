@@ -4,10 +4,10 @@ import { useQuizStore } from "@/store/useQuizStore";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Animated, { FadeInRight, FadeOutLeft } from 'react-native-reanimated';
 import Button from "./Button";
 import ButtonQuestions from "./ButtonQuestions";
 import ProgressBar from "./ProgressBar";
-import Animated, { FadeInRight, FadeOutLeft } from 'react-native-reanimated';
 
 type Question = {
   question: string

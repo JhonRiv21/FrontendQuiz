@@ -4,14 +4,14 @@ import ViewTheme from "@/components/ViewTheme";
 import { GlobalStyles } from '@/constants/GlobalStyles';
 import Questions from '@/constants/Questions.json';
 import { getFeedback } from '@/constants/Texts';
+import { useFadeInAnimation } from '@/hooks/useFadeInAnimation';
 import { useQuizStore } from '@/store/useQuizStore';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useFadeInAnimation } from '@/hooks/useFadeInAnimation';
 import Animated from 'react-native-reanimated';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;

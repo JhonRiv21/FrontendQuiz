@@ -1,9 +1,9 @@
 import ViewTheme from '@/components/ViewTheme';
 import { GlobalStyles } from '@/constants/GlobalStyles';
-import { ScrollView, StyleSheet, Text } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import Animated from 'react-native-reanimated';
 import { useFadeInAnimation } from '@/hooks/useFadeInAnimation';
+import { ScrollView, StyleSheet, Text } from "react-native";
+import Animated from 'react-native-reanimated';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AboutScreen() {
   const fadeInStyle = useFadeInAnimation();

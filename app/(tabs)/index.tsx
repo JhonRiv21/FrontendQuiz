@@ -1,12 +1,12 @@
 import ButtonOptions from "@/components/ButtonOptions";
 import ViewTheme from "@/components/ViewTheme";
 import { GlobalStyles } from "@/constants/GlobalStyles";
+import { useFadeInAnimation } from "@/hooks/useFadeInAnimation";
 import { useQuizStore } from "@/store/useQuizStore";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import Animated from "react-native-reanimated";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import Animated, { FadeInRight, FadeOutLeft } from "react-native-reanimated";
-import { useFadeInAnimation } from "@/hooks/useFadeInAnimation";
 
 const HTMLIcon = require('@/assets/images/html.svg');
 const CSSIcon = require('@/assets/images/css.svg');

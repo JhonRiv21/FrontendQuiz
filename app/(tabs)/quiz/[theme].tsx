@@ -2,11 +2,11 @@ import Quiz from '@/components/Quiz';
 import ViewTheme from "@/components/ViewTheme";
 import { GlobalStyles } from '@/constants/GlobalStyles';
 import Questions from '@/constants/Questions.json';
+import { useFadeInAnimation } from '@/hooks/useFadeInAnimation';
 import { useLocalSearchParams } from 'expo-router';
 import { ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useFadeInAnimation } from '@/hooks/useFadeInAnimation';
 import Animated from 'react-native-reanimated';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;
