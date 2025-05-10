@@ -25,8 +25,6 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
-        <Stack.Screen name="quiz/[theme]" options={{ headerShown: false }} />
-        <Stack.Screen name="quiz/result/[result]" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
