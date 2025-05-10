@@ -1,12 +1,12 @@
-import { GlobalStyles } from "@/constants/GlobalStyles";
-import { View, Text, StyleSheet } from "react-native";
-import Button from "./Button";
-import ProgressBar from "./ProgressBar";
-import { useEffect, useState } from "react";
-import ButtonQuestions from "./ButtonQuestions";
 import { showSelectOptionAlert } from "@/constants/Alerts";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GlobalStyles } from "@/constants/GlobalStyles";
+import { useQuizStore } from "@/store/useQuizStore";
 import { useRouter } from "expo-router";
+import { useEffect } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Button from "./Button";
+import ButtonQuestions from "./ButtonQuestions";
+import ProgressBar from "./ProgressBar";
 
 type Question = {
   question: string
@@ -21,81 +21,31 @@ type Props = {
 };
 
 export default function Quiz ({ questions, topicId }: Props) {
-  const [questionIndexes, setQuestionIndexes] = useState<{ [topicId: string]: number }>({});
-  const [selectedOptions, setSelectedOptions] = useState<{ [topicId: string]: (number | null)[] }>({});
-  const [hasAnswered, setHasAnswered] = useState<{ [topicId: string]: boolean[] }>({});
-  const getStorageKey = (topicId: string) =>  `quiz-progress-${topicId}`
-  const route = useRouter();
+  const {
+    quizzes,
+    loadQuiz,
+    updateAnswer,
+    goToNextQuestion,
+  } = useQuizStore();
 
-  const currentIndex = questionIndexes[topicId] ?? 0;
-  const selections = selectedOptions[topicId] ?? [];
-  const selected = selections[currentIndex];
+  const quiz = quizzes[topicId];
+  const router = useRouter();
+
+  useEffect(() => {
+    if (questions.length > 0) {
+      loadQuiz(topicId, questions.length);
+    };
+  }, [topicId, questions.length, loadQuiz]);
+
+  if (!quiz) return null;
+
+  const currentIndex = quiz.currentIndex;
+  const selected = quiz.selectedOptions[currentIndex];
   const currentQuestion = questions[currentIndex];
-  const answered = hasAnswered[topicId]?.[currentIndex] ?? false;
+  const answered = quiz.hasAnswered[currentIndex];
 
-  useEffect(() => {
-    const loadOrInitialize = async () => {
-      const key = getStorageKey(topicId);
-      try {
-        const stored = await AsyncStorage.getItem(key);
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          setSelectedOptions(prev => ({ ...prev, [topicId]: parsed.selectedOptions }));
-          setHasAnswered(prev => ({ ...prev, [topicId]: parsed.hasAnswered }));
-          setQuestionIndexes(prev => ({ ...prev, [topicId]: parsed.currentIndex }));
-          return;
-        }
-  
-        setQuestionIndexes(prev => ({ ...prev, [topicId]: 0 }));
-        setSelectedOptions(prev => ({
-          ...prev,
-          [topicId]: Array(questions.length).fill(null),
-        }));
-        setHasAnswered(prev => ({
-          ...prev,
-          [topicId]: Array(questions.length).fill(false),
-        }));
-      } catch (e) {
-        console.error("Error loading quiz progress:", e);
-      }
-    };
-  
-    loadOrInitialize();
-  }, [topicId, questions.length]);
-
-  useEffect(() => {
-    const saveProgress = async () => {
-      if (
-        selectedOptions[topicId] === undefined ||
-        hasAnswered[topicId] === undefined ||
-        questionIndexes[topicId] === undefined
-      ) return;
-  
-      const key = getStorageKey(topicId);
-      const data = {
-        selectedOptions: selectedOptions[topicId],
-        hasAnswered: hasAnswered[topicId],
-        currentIndex: questionIndexes[topicId],
-      };
-  
-      try {
-        await AsyncStorage.setItem(key, JSON.stringify(data));
-      } catch (e) {
-        console.error("Error saving quiz progress:", e);
-      }
-    };
-  
-    saveProgress();
-  }, [selectedOptions, hasAnswered, questionIndexes, topicId]);  
-  
   const handleOptionSelect = (optionIndex: number) => {
-    const updatedSelections = [...selections];
-    updatedSelections[currentIndex] = optionIndex;
-    
-    setSelectedOptions(prev => ({
-      ...prev,
-      [topicId]: updatedSelections,
-    }));
+    updateAnswer(topicId, currentIndex, optionIndex);
   };
 
   const handleNext = () => {
@@ -105,23 +55,14 @@ export default function Quiz ({ questions, topicId }: Props) {
     };
 
     if (!answered) {
-      const updated = [...(hasAnswered[topicId] ?? [])];
-      updated[currentIndex] = true;
-    
-      setHasAnswered(prev => ({
-        ...prev,
-        [topicId]: updated,
-      }));
+      updateAnswer(topicId, currentIndex, selected);
       return;
     }
 
     if (currentIndex < questions.length - 1) {
-      setQuestionIndexes(prev => ({
-        ...prev,
-        [topicId]: currentIndex + 1,
-      }));
+      goToNextQuestion(topicId);
     } else {
-      route.push(`/quiz/result/${topicId}`)
+      router.push(`/quiz/result/${topicId}`)
     };
   }
 

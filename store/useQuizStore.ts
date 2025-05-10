@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { create } from "zustand";
 
 type QuizProgress  = {
   selectedOptions: (number | null)[]
@@ -10,9 +10,9 @@ type QuizProgress  = {
 type QuizStore = {
   quizzes: Record<string, QuizProgress>;
   loadQuiz: (topicId: string, totalQuestions: number) => Promise<void>;
-  updateAnswer?: (topicId: string, index: number, selected: number) => void;
-  goToNextQuestion?: (topicId: string) => void;
-  resetQuiz?: (topicId: string) => Promise<void>;
+  updateAnswer: (topicId: string, index: number, selected: number) => void;
+  goToNextQuestion: (topicId: string) => void;
+  resetQuiz: (topicId: string) => Promise<void>;
 };
 
 const getStorageKey = (topicId: string) => `quiz-progress-${topicId}`;
