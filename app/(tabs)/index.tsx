@@ -1,6 +1,7 @@
 import ButtonOptions from "@/components/ButtonOptions";
 import ViewTheme from "@/components/ViewTheme";
 import { GlobalStyles } from "@/constants/GlobalStyles";
+import { useQuizStore } from "@/store/useQuizStore";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
@@ -12,6 +13,18 @@ const ACCIcon = require('@/assets/images/accessibility.svg');
 
 export default function HomeScreen() {
   const route = useRouter();
+  const { quizzes } = useQuizStore();
+
+  const redirect = (topic: string) => {
+    const quiz = quizzes[topic];
+    const isCompleted = quiz.hasAnswered?.every(Boolean);
+
+    if (isCompleted) {
+      route.push(`/quiz/result/${topic}`)
+    } else {
+      route.push(`/quiz/${topic}`)
+    }
+  }
 
   return (
     <SafeAreaProvider style={GlobalStyles.screen}>
@@ -22,10 +35,10 @@ export default function HomeScreen() {
           <Text style={GlobalStyles.titleBold}>Frontend Quiz!</Text>
           <Text style={[{ paddingTop: 10, paddingBottom: 50 }, GlobalStyles.textItalic]}>Pick a subject to get started</Text>
           <View style={styles.containerButtons}>
-            <ButtonOptions onPress={() => route.push('/quiz/html')} image={HTMLIcon} label="HTML" />
-            <ButtonOptions onPress={() => route.push('/quiz/css')} image={CSSIcon} label="CSS" />
-            <ButtonOptions onPress={() => route.push('/quiz/javascript')} image={JSIcon} label="Javascript" />
-            <ButtonOptions onPress={() => route.push('/quiz/accessibility')} image={ACCIcon} label="Accessibility" />
+            <ButtonOptions onPress={() => redirect('html')} image={HTMLIcon} label="HTML" />
+            <ButtonOptions onPress={() => redirect('css')} image={CSSIcon} label="CSS" />
+            <ButtonOptions onPress={() => redirect('javascript')} image={JSIcon} label="Javascript" />
+            <ButtonOptions onPress={() => redirect('accessibility')} image={ACCIcon} label="Accessibility" />
           </View>
         </ViewTheme>
         </ScrollView>
