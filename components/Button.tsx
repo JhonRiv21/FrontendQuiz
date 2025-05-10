@@ -5,11 +5,15 @@ import { useState } from 'react';
 type Props = {
   label: string
   onPress: () => void
+  variant?: 'default' | 'danger';
 };
 
-export default function Button({ label, onPress }: Props) {
+export default function Button({ label, onPress, variant = 'default' }: Props) {
   const [isHovered, setHovered] = useState(false);
   const [isFocused, setFocused] = useState(false);
+
+  const baseColor = variant === 'danger' ? '#C92A2A' : Colors.light.purple;
+  const activeColor = variant === 'danger' ? '#A51111' : '#6D36A3';
 
   return (
     <Pressable
@@ -21,8 +25,8 @@ export default function Button({ label, onPress }: Props) {
       style={({ pressed }) => {
         const interactionStyle: ViewStyle = {
           backgroundColor: pressed || isHovered || isFocused
-            ? '#6D36A3'
-            : styles.containerButton.backgroundColor,
+            ? activeColor
+            : baseColor,
           transform: pressed ? [{ scale: 0.98 }] : [{ scale: 1 }],
         };
 
@@ -38,7 +42,6 @@ const styles = StyleSheet.create({
   containerButton: {
     width: '100%',
     padding: 16,
-    backgroundColor: Colors.light.purple,
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',

@@ -9,6 +9,8 @@ import { useLocalSearchParams } from 'expo-router';
 import { useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+import Button from '@/components/Button';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;
@@ -21,7 +23,8 @@ type StoreQuizStore = {
 
 export default function ResultScreen() {
   const { result } = useLocalSearchParams();
-  const { quizzes, loadQuiz } = useQuizStore();
+  const { quizzes, loadQuiz, resetQuiz } = useQuizStore();
+  const router = useRouter();
 
   const theme = typeof result === 'string' && VALID_THEMES.includes(result as QuizKeys)
   ? result as QuizKeys
@@ -61,6 +64,13 @@ export default function ResultScreen() {
         `✔️ Correct answer: ${question.options[question.correctIndex]}`
       ].join('\n'));      
     })
+  }
+
+  const resetTheme = () => {
+    if (theme) {
+      resetQuiz(theme);
+    }
+    router.push(`/quiz/${theme}`)
   }
 
   return (
@@ -114,6 +124,20 @@ export default function ResultScreen() {
                     );
                   })}
                 </Collapsible>
+              </View>
+              <View style={{ marginBlock: 10, gap: 30 }}>
+                <Button label="Go to home" onPress={() => router.push("/")} />
+                
+                <View style={{ paddingVertical: 16 }}>
+                <Collapsible title="Do you wanted reset this quiz?">
+                  <View style={{ paddingTop: 25 }}>
+                    {theme && (
+                      <Button label="Reset this quiz" variant='danger' onPress={resetTheme} />
+                    )}
+                  </View>
+                </Collapsible>
+              </View>
+                
               </View>
             </View>
           </View>
