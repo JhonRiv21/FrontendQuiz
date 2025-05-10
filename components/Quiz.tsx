@@ -26,6 +26,7 @@ export default function Quiz ({ questions, topicId }: Props) {
     loadQuiz,
     updateAnswer,
     goToNextQuestion,
+    setSelectedOption,
   } = useQuizStore();
 
   const quiz = quizzes[topicId];
@@ -45,7 +46,7 @@ export default function Quiz ({ questions, topicId }: Props) {
   const answered = quiz.hasAnswered[currentIndex];
 
   const handleOptionSelect = (optionIndex: number) => {
-    updateAnswer(topicId, currentIndex, optionIndex);
+    setSelectedOption(topicId, currentIndex, optionIndex);
   };
 
   const handleNext = () => {
