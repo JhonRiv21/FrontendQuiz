@@ -1,5 +1,5 @@
 import { Colors } from "@/constants/Colors";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type Props = {
   percent: number  

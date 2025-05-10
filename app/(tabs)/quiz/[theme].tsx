@@ -1,10 +1,10 @@
-import { StyleSheet, ScrollView } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
-import { GlobalStyles } from '@/constants/GlobalStyles';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
-import ViewTheme from "@/components/ViewTheme";
-import Questions from '@/constants/Questions.json'
 import Quiz from '@/components/Quiz';
+import ViewTheme from "@/components/ViewTheme";
+import { GlobalStyles } from '@/constants/GlobalStyles';
+import Questions from '@/constants/Questions.json';
+import { useLocalSearchParams } from 'expo-router';
+import { ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;

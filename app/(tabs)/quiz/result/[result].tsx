@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import { Collapsible } from '@/components/Collapsible';
 import ViewTheme from "@/components/ViewTheme";
 import { GlobalStyles } from '@/constants/GlobalStyles';
@@ -5,12 +6,10 @@ import Questions from '@/constants/Questions.json';
 import { getFeedback } from '@/constants/Texts';
 import { useQuizStore } from '@/store/useQuizStore';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
-import Button from '@/components/Button';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;

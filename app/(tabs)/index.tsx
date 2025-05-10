@@ -1,9 +1,9 @@
 import ButtonOptions from "@/components/ButtonOptions";
-import { GlobalStyles } from "@/constants/GlobalStyles";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import ViewTheme from "@/components/ViewTheme";
+import { GlobalStyles } from "@/constants/GlobalStyles";
 import { useRouter } from "expo-router";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const HTMLIcon = require('@/assets/images/html.svg');
 const CSSIcon = require('@/assets/images/css.svg');

@@ -1,6 +1,6 @@
 import { Colors } from "@/constants/Colors";
-import { Pressable, Text, StyleSheet, ViewStyle } from "react-native";
 import { useState } from 'react';
+import { Pressable, StyleSheet, Text, ViewStyle } from "react-native";
 
 type Props = {
   label: string

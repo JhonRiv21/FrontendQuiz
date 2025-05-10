@@ -1,5 +1,5 @@
 import { GlobalStyles } from "@/constants/GlobalStyles";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type Props = React.PropsWithChildren<object>
 

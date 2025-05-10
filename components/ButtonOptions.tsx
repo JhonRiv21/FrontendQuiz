@@ -1,6 +1,6 @@
-import { Pressable, Text, StyleSheet, ViewStyle } from "react-native";
 import { Image, type ImageSource } from 'expo-image';
 import { useState } from 'react';
+import { Pressable, StyleSheet, Text, ViewStyle } from "react-native";
 
 type Props = {
   label: string
