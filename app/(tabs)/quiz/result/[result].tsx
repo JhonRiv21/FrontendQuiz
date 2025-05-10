@@ -1,14 +1,14 @@
-import { StyleSheet, ScrollView, Text, View, useColorScheme} from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
-import ViewTheme from "@/components/ViewTheme";
-import Questions from '@/constants/Questions.json'
-import { useEffect, useState } from 'react';
-import { GlobalStyles } from '@/constants/GlobalStyles';
 import { Collapsible } from '@/components/Collapsible';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { MaterialIcons } from '@expo/vector-icons';
+import ViewTheme from "@/components/ViewTheme";
+import { GlobalStyles } from '@/constants/GlobalStyles';
+import Questions from '@/constants/Questions.json';
 import { getFeedback } from '@/constants/Texts';
+import { useQuizStore } from '@/store/useQuizStore';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useLocalSearchParams } from 'expo-router';
+import { useEffect } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;
@@ -21,26 +21,35 @@ type StoreQuizStore = {
 
 export default function ResultScreen() {
   const { result } = useLocalSearchParams();
-  const getStorageKey = (topicId: string) =>  `quiz-progress-${topicId}`;
-  const [storageData, setStorageData] = useState<StoreQuizStore | null>(null);
+  const { quizzes, loadQuiz } = useQuizStore();
 
-  // Data from storage
   const theme = typeof result === 'string' && VALID_THEMES.includes(result as QuizKeys)
   ? result as QuizKeys
   : null;
-  
+
+  // Data from storage
+  const quiz: StoreQuizStore | null = theme ? quizzes[theme] : null;
+
   // Data from json questions
   const dataTheme = theme ? Questions[0].quiz[theme] : [];
+
+  useEffect(() => {
+    if (theme && !quiz) {
+      loadQuiz(theme, dataTheme.length);
+    };
+  }, [theme, quiz, loadQuiz, dataTheme.length]);
+
+  if (!quiz) return null;
 
   let correctCount: number = 0;
   let resultLines: string[] = [];
 
-  if (storageData && theme) {
-    storageData.hasAnswered.forEach((answered, index) => {
+  if (quiz && theme) {
+    quiz.hasAnswered.forEach((answered, index) => {
       if (!answered) return;
 
       const question = dataTheme[index];
-      const selected = storageData.selectedOptions[index];
+      const selected = quiz.selectedOptions[index];
       const isCorrect = selected === question.correctIndex
 
       if (isCorrect) correctCount++;
@@ -54,23 +63,6 @@ export default function ResultScreen() {
     })
   }
 
-  useEffect(() => {
-    const loadDataFromStorage = async () => {
-      const key = getStorageKey(`${result}`);
-      try {
-        const stored = await AsyncStorage.getItem(key);
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          setStorageData(parsed);
-          return;
-        };
-      } catch (e) {
-        console.error(e);
-      };
-    }
-    loadDataFromStorage();
-  }, [result]);
-
   return (
     <SafeAreaProvider style={GlobalStyles.screen}>
       <SafeAreaView style={styles.container} edges={['top']}>
@@ -83,7 +75,7 @@ export default function ResultScreen() {
             <View style={{ gap: 20 }}>
               <Text style={GlobalStyles.textSemiLight}>Score Summary:</Text>
               <Text style={GlobalStyles.textMidSize}>
-                You scored {correctCount} out of {storageData?.hasAnswered.length}!
+                You scored {correctCount} out of {dataTheme.length}!
               </Text>
               <View>
                 <Text style={GlobalStyles.textSemiLight}>
