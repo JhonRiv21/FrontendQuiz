@@ -51,7 +51,7 @@ export const useQuizStore = create<QuizStore>((set, get) => ({
     }
   },
 
-  updateAnswer: (topicId, index, selected) => {
+  updateAnswer: (topicId, index) => {
     const quizzes = get().quizzes;
     const quiz = quizzes[topicId];
     if (!quiz) return;
