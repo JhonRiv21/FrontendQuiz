@@ -1,50 +1,42 @@
-# Welcome to your Expo app 👋
+# Frontend Quiz App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+[📲 Download APK](https://your-link-here.com)
 
-## Get started
+A mobile quiz application built with **React Native + Expo**, designed to help users assess and improve their frontend knowledge across key topics like **HTML**, **CSS**, **JavaScript**, and **Accessibility**.
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- 🧠 Multiple-choice questions on core frontend topics
+- 💾 Persistent progress using **AsyncStorage**
+- 📈 Dynamically scalable to support any number of questions
+- 🔁 Real-time feedback and smooth navigation
+- 📱 Fully functional on Android (real devices and emulators)
 
-2. Start the app
+## 🧱 Architecture
 
-   ```bash
-   npx expo start
-   ```
+- **Component-based UI** for reusability and consistency
+- **Zustand** for centralized state management
+- **Vitest** for unit testing core logic
+- **React Native Reanimated** for transitions and animations
+- **Custom hooks** for animation and theming
+- **Safe area layout** using `react-native-safe-area-context`
 
-In the output, you'll find options to open the app in a
+## 🛠 Technologies
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- React Native + Expo
+- TypeScript
+- Zustand
+- AsyncStorage
+- Reanimated
+- Vitest
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🚀 Scalability
 
-## Get a fresh project
+The app is built with extensibility in mind. The quiz engine supports any number of questions without hardcoded assumptions or layout constraints, enabling future additions such as new topics and difficulty levels.
 
-When you're ready, run:
+## 👤 Author
 
-```bash
-npm run reset-project
-```
+**Jhon Rivero**  
+Frontend developer focused on performance, clean architecture, and user experience. This project reflects my core values as a developer: clarity, responsiveness, and long-term maintainability.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+> *Designed and developed with care.*
