@@ -1,6 +1,14 @@
-# Frontend Quiz App
+# Frontend Quiz Mobile App
 
 [📲 Download APK](https://your-link-here.com)
+
+📱 If you want to test the app instantly:
+
+1. Install [Expo Go](https://expo.dev/client)
+2. Scan this QR code or open the link below
+3. You don’t need to install any APK
+
+_______________________________________________
 
 A mobile quiz application built with **React Native + Expo**, designed to help users assess and improve their frontend knowledge across key topics like **HTML**, **CSS**, **JavaScript**, and **Accessibility**.
 
