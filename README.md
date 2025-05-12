@@ -1,12 +1,12 @@
 # Frontend Quiz Mobile App
 
-[📲 Download APK](https://your-link-here.com)
+Install APK [📲 Download APK]([https://your-link-here.com](https://expo.dev/accounts/jhonrivero/projects/FrontendQuiz/builds/d4dbc88e-09bb-4a54-8a40-90e42b10bb6a))
 
 📱 If you want to test the app instantly:
 
 1. Install [Expo Go](https://expo.dev/client)
-2. Scan this QR code or open the link below
-3. You don’t need to install any APK
+2. Scan this QR code or open the link below [Get QR](https://expo.dev/preview/update?message=enhance%3A%20update%20readme&updateRuntimeVersion=1.0.0&createdAt=2025-05-12T08%3A37%3A22.247Z&slug=exp&projectId=5bf57d88-8cc2-49c9-9c4e-fed3e9411fb2&group=53b3255f-0684-4714-b3f6-84eaea95d791)
+3. You don’t need to install the APK
 
 _______________________________________________
 
