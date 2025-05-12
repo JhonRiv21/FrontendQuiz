@@ -13,7 +13,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icon.png"
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#362D60"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.jhonrivero.FrontendQuiz"
