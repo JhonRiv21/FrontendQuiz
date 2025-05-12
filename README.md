@@ -9,7 +9,7 @@
 
 1. Install [Expo Go](https://expo.dev/client) on your mobile device  
 2. Scan the QR code or open the link below:  
-   [Open in Expo](https://expo.dev/preview/update?message=enhance%3A%20update%20readme&updateRuntimeVersion=1.0.0&createdAt=2025-05-12T08%3A37%3A22.247Z&slug=exp&projectId=5bf57d88-8cc2-49c9-9c4e-fed3e9411fb2&group=53b3255f-0684-4714-b3f6-84eaea95d791)  
+   [Open in Expo](https://expo.dev/preview/update?message=enhance%3A%20update%20readme&updateRuntimeVersion=1.0.0&createdAt=2025-05-12T08%3A37%3A22.247Z&slug=exp&projectId=5bf57d88-8cc2-49c9-9c4e-fed3e9411fb2&group=53b3255f-0684-4714-b3f6-84eaea95d791) _(opens in new tab)_
 3. No need to install the APK!
 
 _______________________________________________
