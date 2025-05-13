@@ -41,6 +41,7 @@ A mobile quiz application built with **React Native + Expo**, designed to help u
 - AsyncStorage
 - Reanimated
 - Vitest
+- Sonarcloud
 
 ## 🚀 Scalability
 
