@@ -46,7 +46,7 @@ A mobile quiz application built with **React Native + Expo**, designed to help u
 
 The app is built with extensibility in mind. The quiz engine supports any number of questions without hardcoded assumptions or layout constraints, enabling future additions such as new topics and difficulty levels.
 
-## 👤 Author
+## 👤 Author 
 
 **Jhon Rivero**  
 Frontend developer focused on performance, clean architecture, and user experience. This project reflects my core values as a developer: clarity, responsiveness, and long-term maintainability.
