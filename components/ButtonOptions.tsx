@@ -10,15 +10,15 @@ type Props = Readonly<{
 }>;
 
 export default function ButtonOptions({ label, image, onPress, percent }: Props) {
-  const [isHovered, setHovered] = useState(false);
-  const [isFocused, setFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <Pressable
-      onHoverIn={() => setHovered(true)}
-      onHoverOut={() => setHovered(false)}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      onHoverIn={() => setIsHovered(true)}
+      onHoverOut={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
       onPress={onPress}
       style={({ pressed }) => {
         const interactionStyle: ViewStyle = {

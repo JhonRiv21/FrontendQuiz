@@ -12,8 +12,8 @@ type Props = Readonly<{
 }>;
 
 export default function ButtonQuestions({ label, onPress, letter, selected, isCorrect, isWrong, disabled }: Props) {
-  const [isHovered, setHovered] = useState(false);
-  const [isFocused, setFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const getButtonStyle = (pressed: boolean): ViewStyle[] => {
     let backgroundColor = '#4F418B';
@@ -46,10 +46,10 @@ export default function ButtonQuestions({ label, onPress, letter, selected, isCo
   return (
     <Pressable
       disabled={disabled}
-      onHoverIn={() => setHovered(true)}
-      onHoverOut={() => setHovered(false)}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      onHoverIn={() => setIsHovered(true)}
+      onHoverOut={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
       onPress={onPress}
       style={({ pressed }) => getButtonStyle(pressed)}
     >

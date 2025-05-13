@@ -9,18 +9,18 @@ type Props = Readonly<{
 }>;
 
 export default function Button({ label, onPress, variant = 'default' }: Props) {
-  const [isHovered, setHovered] = useState(false);
-  const [isFocused, setFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const baseColor = variant === 'danger' ? '#C92A2A' : Colors.light.purple;
   const activeColor = variant === 'danger' ? '#A51111' : '#6D36A3';
 
   return (
     <Pressable
-      onHoverIn={() => setHovered(true)}
-      onHoverOut={() => setHovered(false)}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      onHoverIn={() => setIsHovered(true)}
+      onHoverOut={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
       onPress={onPress}
       style={({ pressed }) => {
         const interactionStyle: ViewStyle = {
