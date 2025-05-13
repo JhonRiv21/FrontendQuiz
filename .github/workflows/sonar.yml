@@ -26,7 +26,12 @@ jobs:
       - name: Run tests with coverage
         run: npm run test:coverage
 
+      - name: Check if coverage file exists
+        run: ls coverage/lcov.info
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: .
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
