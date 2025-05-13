@@ -16,10 +16,10 @@ type Question = {
   correctIndex?: number
 };
 
-type Props = {
+type Props = Readonly<{
   questions: Question[]
   topicId: string
-};
+}>;
 
 export default function Quiz ({ questions, topicId }: Props) {
   const {
@@ -90,7 +90,7 @@ export default function Quiz ({ questions, topicId }: Props) {
         {
           currentQuestion.options.map((item, index) => (
             <ButtonQuestions
-              key={index}
+              key={`${item}-${index}`}
               letter={String.fromCharCode(65 + index)} 
               label={item}
               onPress={() => handleOptionSelect(index)} 

@@ -1,50 +1,54 @@
-# Welcome to your Expo app 👋
+# Frontend Quiz Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+### 📲 Install APK  
+[Download APK](https://expo.dev/accounts/jhonrivero/projects/FrontendQuiz/builds/d4dbc88e-09bb-4a54-8a40-90e42b10bb6a)
 
-## Get started
+---
 
-1. Install dependencies
+### 📱 Try the App Instantly
 
-   ```bash
-   npm install
-   ```
+1. Install [Expo Go](https://expo.dev/client) on your mobile device  
+2. Scan the QR code or open the link below:  
+   [Open in Expo](https://expo.dev/preview/update?message=enhance%3A%20update%20readme&updateRuntimeVersion=1.0.0&createdAt=2025-05-12T08%3A37%3A22.247Z&slug=exp&projectId=5bf57d88-8cc2-49c9-9c4e-fed3e9411fb2&group=53b3255f-0684-4714-b3f6-84eaea95d791) _(opens in new tab)_
+3. No need to install the APK!
 
-2. Start the app
+_______________________________________________
 
-   ```bash
-   npx expo start
-   ```
+A mobile quiz application built with **React Native + Expo**, designed to help users assess and improve their frontend knowledge across key topics like **HTML**, **CSS**, **JavaScript**, and **Accessibility**.
 
-In the output, you'll find options to open the app in a
+## ✨ Features
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- 🧠 Multiple-choice questions on core frontend topics
+- 💾 Persistent progress using **AsyncStorage**
+- 📈 Dynamically scalable to support any number of questions
+- 🔁 Real-time feedback and smooth navigation
+- 📱 Fully functional on Android (real devices and emulators)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🧱 Architecture
 
-## Get a fresh project
+- **Component-based UI** for reusability and consistency
+- **Zustand** for centralized state management
+- **Vitest** for unit testing core logic
+- **React Native Reanimated** for transitions and animations
+- **Custom hooks** for animation and theming
+- **Safe area layout** using `react-native-safe-area-context`
 
-When you're ready, run:
+## 🛠 Technologies
 
-```bash
-npm run reset-project
-```
+- React Native + Expo
+- TypeScript
+- Zustand
+- AsyncStorage
+- Reanimated
+- Vitest
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🚀 Scalability
 
-## Learn more
+The app is built with extensibility in mind. The quiz engine supports any number of questions without hardcoded assumptions or layout constraints, enabling future additions such as new topics and difficulty levels.
 
-To learn more about developing your project with Expo, look at the following resources:
+## 👤 Author
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+**Jhon Rivero**  
+Frontend developer focused on performance, clean architecture, and user experience. This project reflects my core values as a developer: clarity, responsiveness, and long-term maintainability.
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+> *Designed and developed with care.*
