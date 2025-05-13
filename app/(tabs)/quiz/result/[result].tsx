@@ -101,7 +101,7 @@ export default function ResultScreen() {
                     const isCorrect = parts[0]?.includes('Correct');
 
                     return (
-                      <View key={idx} style={styles.resultCard}>
+                      <View key={`${line}-${idx}`} style={styles.resultCard}>
                         <View style={styles.resultHeader}>
                           <MaterialIcons
                             name={isCorrect ? 'check-circle' : 'cancel'}
@@ -113,7 +113,7 @@ export default function ResultScreen() {
                         </View>
                         <View style={styles.tipBox}>
                           {parts.slice(1).map((line, i) => (
-                            <Text key={i} style={[
+                            <Text key={`${line}-${i}`} style={[
                               styles.tipText,
                               line.startsWith('Your answer:') && !isCorrect ? { color: '#FF5252' } : null,
                               line.startsWith('✔️ Correct answer:') ? { fontWeight: '600' } : null,

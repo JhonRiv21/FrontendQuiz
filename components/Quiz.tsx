@@ -90,7 +90,7 @@ export default function Quiz ({ questions, topicId }: Props) {
         {
           currentQuestion.options.map((item, index) => (
             <ButtonQuestions
-              key={index}
+              key={`${item}-${index}`}
               letter={String.fromCharCode(65 + index)} 
               label={item}
               onPress={() => handleOptionSelect(index)} 
