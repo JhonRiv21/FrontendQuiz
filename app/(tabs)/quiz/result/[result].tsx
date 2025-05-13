@@ -12,15 +12,9 @@ import { useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { QuizKeys, QuizProgress } from '@/types/quiz';
 
-type QuizKeys = 'html' | 'css' | 'javascript' | 'accessibility';
 const VALID_THEMES = ['html', 'css', 'javascript', 'accessibility'] as const;
-
-type StoreQuizStore = {
-  currentIndex: number
-  hasAnswered: boolean[]
-  selectedOptions: (number | null)[]
-}
 
 export default function ResultScreen() {
   const { result } = useLocalSearchParams();
@@ -33,7 +27,7 @@ export default function ResultScreen() {
   : null;
 
   // Data from storage
-  const quiz: StoreQuizStore | null = theme ? quizzes[theme] : null;
+  const quiz: QuizProgress | null = theme ? quizzes[theme] : null;
 
   // Data from json questions
   const dataTheme = theme ? Questions[0].quiz[theme] : [];
@@ -101,7 +95,7 @@ export default function ResultScreen() {
                     const isCorrect = parts[0]?.includes('Correct');
 
                     return (
-                      <View key={idx} style={styles.resultCard}>
+                      <View key={`${line}-${idx}`} style={styles.resultCard}>
                         <View style={styles.resultHeader}>
                           <MaterialIcons
                             name={isCorrect ? 'check-circle' : 'cancel'}
@@ -113,7 +107,7 @@ export default function ResultScreen() {
                         </View>
                         <View style={styles.tipBox}>
                           {parts.slice(1).map((line, i) => (
-                            <Text key={i} style={[
+                            <Text key={`${line}-${i}`} style={[
                               styles.tipText,
                               line.startsWith('Your answer:') && !isCorrect ? { color: '#FF5252' } : null,
                               line.startsWith('✔️ Correct answer:') ? { fontWeight: '600' } : null,

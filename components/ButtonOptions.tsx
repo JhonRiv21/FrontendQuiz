@@ -2,23 +2,23 @@ import { Image, type ImageSource } from 'expo-image';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
 
-type Props = {
+type Props = Readonly<{
   label: string
   image: ImageSource
   onPress: () => void
   percent?: number | null
-};
+}>;
 
 export default function ButtonOptions({ label, image, onPress, percent }: Props) {
-  const [isHovered, setHovered] = useState(false);
-  const [isFocused, setFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <Pressable
-      onHoverIn={() => setHovered(true)}
-      onHoverOut={() => setHovered(false)}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      onHoverIn={() => setIsHovered(true)}
+      onHoverOut={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
       onPress={onPress}
       style={({ pressed }) => {
         const interactionStyle: ViewStyle = {
