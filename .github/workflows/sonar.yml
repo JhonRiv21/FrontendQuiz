@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Run tests with coverage
-        run: npx run test:coverage
+        run: npm run test:coverage
 
       - name: Check if coverage file exists
         run: ls coverage/lcov.info
