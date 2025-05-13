@@ -2,12 +2,12 @@ import { Image, type ImageSource } from 'expo-image';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
 
-type Props = {
+type Props = Readonly<{
   label: string
   image: ImageSource
   onPress: () => void
   percent?: number | null
-};
+}>;
 
 export default function ButtonOptions({ label, image, onPress, percent }: Props) {
   const [isHovered, setHovered] = useState(false);

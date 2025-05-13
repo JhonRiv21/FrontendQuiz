@@ -2,11 +2,11 @@ import { Colors } from "@/constants/Colors";
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, ViewStyle } from "react-native";
 
-type Props = {
+type Props = Readonly<{
   label: string
   onPress: () => void
   variant?: 'default' | 'danger';
-};
+}>;
 
 export default function Button({ label, onPress, variant = 'default' }: Props) {
   const [isHovered, setHovered] = useState(false);

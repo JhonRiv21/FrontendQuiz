@@ -1,9 +1,9 @@
 import { Colors } from "@/constants/Colors";
 import { StyleSheet, View } from "react-native";
 
-type Props = {
+type Props = Readonly<{
   percent: number  
-}
+}>
 
 export default function ProgressBar ({ percent }: Props) {
   return (

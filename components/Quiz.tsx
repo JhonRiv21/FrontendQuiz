@@ -16,10 +16,10 @@ type Question = {
   correctIndex?: number
 };
 
-type Props = {
+type Props = Readonly<{
   questions: Question[]
   topicId: string
-};
+}>;
 
 export default function Quiz ({ questions, topicId }: Props) {
   const {

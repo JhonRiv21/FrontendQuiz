@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
 
-type Props = {
+type Props = Readonly<{
   label: string
   onPress: () => void
   letter?: string
@@ -9,7 +9,7 @@ type Props = {
   isCorrect?: boolean
   isWrong?: boolean
   disabled: boolean
-};
+}>;
 
 export default function ButtonQuestions({ label, onPress, letter, selected, isCorrect, isWrong, disabled }: Props) {
   const [isHovered, setHovered] = useState(false);
