@@ -95,9 +95,9 @@ export default function Quiz ({ questions, topicId }: Props) {
               label={item}
               onPress={() => handleOptionSelect(index)} 
               selected={selected === index}
-              isCorrect={!answered && index === currentQuestion.correctIndex}
-              isWrong={!answered && selected === index && index !== currentQuestion.correctIndex}
-              disabled={!answered}
+              isCorrect={!!answered && index === currentQuestion.correctIndex}
+              isWrong={!!answered && selected === index && index !== currentQuestion.correctIndex}
+              disabled={!!answered}
             />
           ))
         }      
