@@ -6,6 +6,14 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+const HomeTabIcon = ({ color }: { color: string }) => (
+  <IconSymbol size={28} name="house.fill" color={color} />
+);
+
+const AboutTabIcon = ({ color }: { color: string }) => (
+  <IconSymbol size={28} name="paperplane.fill" color={color} />
+);
+
 export default function TabLayout() {
  const insets = useSafeAreaInsets();
   
@@ -34,18 +42,14 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
-          ),
+          tabBarIcon: HomeTabIcon,
         }}
       />
       <Tabs.Screen
         name="about"
         options={{
           title: 'About',
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
-          ),
+          tabBarIcon: AboutTabIcon,
         }}
       />
       <Tabs.Screen
