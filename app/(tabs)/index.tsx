@@ -8,6 +8,7 @@ import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { getPercent, getGlobalPercent } from "@/utils/percentages";
 
 const HTMLIcon = require('@/assets/images/html.svg');
 const CSSIcon = require('@/assets/images/css.svg');
@@ -18,42 +19,6 @@ export default function HomeScreen() {
   const route = useRouter();
   const { quizzes } = useQuizStore();
   const fadeInStyle = useFadeInAnimation();
-
-  const getPercent = (topic: string) => {
-    const quiz = quizzes[topic];
-    if (!quiz || !Array.isArray(quiz.hasAnswered)) return null;
-
-    const total = quiz.hasAnswered.length;
-    const current = quiz.currentIndex ?? 0;
-
-    if (total === 0) return null;
-
-    const isComplete = quiz.hasAnswered.every(Boolean);
-    const percent = isComplete
-      ? 100
-      : Math.floor((current / total) * 100);
-
-    return percent > 0 ? percent : null;
-  };
-
-  const getGlobalPercent = () => {
-    const topics = Object.values(quizzes);
-
-    if (topics.length === 0) return 0;
-
-    let totalAnswered = 0;
-    let totalQuestions = 0;
-
-    for (const quiz of topics) {
-      if (!quiz || !Array.isArray(quiz.hasAnswered)) continue;
-
-      totalAnswered += quiz.hasAnswered.filter(Boolean).length;
-      totalQuestions += quiz.hasAnswered.length;
-    }
-
-    if (totalQuestions === 0) return 0;
-    return Math.floor((totalAnswered / totalQuestions) * 100);
-  };
 
   const redirect = (topic: string) => {
     const quiz = quizzes[topic];
@@ -75,25 +40,25 @@ export default function HomeScreen() {
             <Text style={GlobalStyles.title}>Welcome to the</Text>
             <Text style={GlobalStyles.titleBold}>Frontend Quiz!</Text>
             <Text style={[{ paddingTop: 10, paddingBottom: 20 }, GlobalStyles.textItalic]}>Pick a subject to get started</Text>
-            <ProgressBar percent={getGlobalPercent()} />
+            <ProgressBar percent={getGlobalPercent(quizzes)} />
             <View style={[{ paddingTop: 20 }, styles.containerButtons]}>
               <ButtonOptions 
-                percent={getPercent('html')}
+                percent={getPercent(quizzes['html'])}
                 onPress={() => redirect('html')}
                 image={HTMLIcon} label="HTML" 
               />
               <ButtonOptions 
-                percent={getPercent('css')}
+                percent={getPercent(quizzes['css'])}
                 onPress={() => redirect('css')}
                 image={CSSIcon} label="CSS" 
               />
               <ButtonOptions 
-                percent={getPercent('javascript')}
+                percent={getPercent(quizzes['javascript'])}
                 onPress={() => redirect('javascript')}
                 image={JSIcon} label="Javascript" 
               />
               <ButtonOptions 
-                percent={getPercent('accessibility')}
+                percent={getPercent(quizzes['accessibility'])}
                 onPress={() => redirect('accessibility')}
                 image={ACCIcon} label="Accessibility" 
               />
